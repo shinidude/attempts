@@ -26,6 +26,23 @@ router.post("/register", async(req, res)=>{
     res.json(user);
  }); 
 
-router.post("/login")
+router.post("/login", async(req, res)=>{
+    const {username,  password} = req.body;
+    //Finding a user where the user is equal to the username given by the user
+    const user = await UserModel.findOne({username : username});
+
+    if(!user){
+        return res.json({message: "User not found, please check your details."});
+    }
+
+    const isPasswordValid =  await bcrypt.compare(password, user.password);
+    if(!isPasswordValid){
+        res.json({message:"Password is incorrect, please check your details"});
+    }
+
+    const token = jwt.sign({id: user._id},  "secret");
+    res.json({token, userID: user._id})
+
+})
 
 export {router as userRouter}; 

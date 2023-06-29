@@ -1,0 +1,7 @@
+npm i express nodemone dotenv cors
+
+nodemone: update the server to make sure we don't have errors 
+dotenv : allows use environment variables inside the backend application and keep any secret keys from the public 
+cors : to connect the local host to the backend.  Without this, cors error occurs due to security issues
+
+MongoDB password : cv9SAYIB3qMNvvEU

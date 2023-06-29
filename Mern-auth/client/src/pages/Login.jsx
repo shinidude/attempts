@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export default function Login () {
@@ -5,9 +6,9 @@ export default function Login () {
         email : '', 
         password : ''
     })
-    const handleSumbit =(e)=>{
+    const handleSumbit =async (e)=>{
         e.preventDefault(); 
-
+        fetch('http://localhost:8000/').then(res => res.json()).then(data=> console.log(data)); 
     }
     return (
 

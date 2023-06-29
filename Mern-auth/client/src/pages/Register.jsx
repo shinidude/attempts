@@ -38,7 +38,7 @@ export default function Register (){
                 <input type='text' placeholder="enter name ..." value={data.name} onChange={(e) =>{setData({...data, name: e.target.value})}}/>
                 <label>Email</label>
                 {/* //Taking all the data with the changes occurs in the email input  based on the user's input */}
-                <input type='email' placeholder="enter email ..." value={data.emaill} onChange={(e) =>{setData({...data, emaill: e.target.value})}}/>
+                <input type='email' placeholder="enter email ..." value={data.email} onChange={(e) =>{setData({...data, email: e.target.value})}}/>
                 <label>Password </label>
                    {/* //Taking all the data with the changes occurs in the password input based on the user's input */}
                 <input type='password' placeholder="enter password ..." value={data.password} onChange={(e) =>{setData({...data, password: e.target.value})}}/>

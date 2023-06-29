@@ -41,12 +41,11 @@ export const CreateRecipe = () => {
     console.log(recipe)
     try {
       await axios.post(
-        "http://localhost:3001/recipes",
-        { ...recipe },
-        {
-          headers: { authorization: cookies.access_token },
-        }
-      );
+        "http://localhost:3001/recipe", recipe)
+      //   {
+      //     headers: { authorization: cookies.access_token },
+      //   }
+      // );
 
       alert("Recipe Created");
       navigate("/");

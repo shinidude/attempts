@@ -66,7 +66,8 @@ const loginUser = async (req, res)=>{
                 if(err) throw err ;
                 res.cookie('token',token).json(user);
             } )
-        }else{
+        }
+        if(!isMatch){
             return res.json({
                 error : 'password incorrect'
             });
@@ -79,9 +80,11 @@ const loginUser = async (req, res)=>{
 const getProfile =(req, res) =>{
     //The rrequired cookied
     const {token} = req.cookies; 
+    console.log(token);
     if(token){
         jwt.verify(token, process.env.SECRET, {},(err, user)=>{
             if(err)throw err; 
+            console.log(user);
             res.json(user);
         })
     }else{

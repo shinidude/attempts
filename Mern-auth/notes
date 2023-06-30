@@ -5,3 +5,7 @@ dotenv : allows use environment variables inside the backend application and kee
 cors : to connect the local host to the backend.  Without this, cors error occurs due to security issues
 
 MongoDB password : cv9SAYIB3qMNvvEU
+
+npm i jsonwebtoken cookie-parser :  the installation of jsonwebtokens is to be able to use cookies for each users and be able to track them in the application 
+
+cookie-parser : to use information 

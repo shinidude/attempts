@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt =  require('jsonwebtoken');
 
 const test = (req, res) =>{
     res.json('test is working');
@@ -60,7 +61,11 @@ const loginUser = async (req, res)=>{
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if(isMatch){
-            return res.json("Password is matched");
+            //The information that is sent, the second parameter is the secret which is made in the env file
+            jwt.sign({email: user.email, id: user._id, name: user.name},process.env.SECRET, {},(err, token) => {
+                if(err) throw err ;
+                res.cookie('token',token).json(user);
+            } )
         }else{
             return res.json({
                 error : 'password incorrect'
@@ -71,8 +76,21 @@ const loginUser = async (req, res)=>{
     }
 }
 
+const getProfile =(req, res) =>{
+    //The rrequired cookied
+    const {token} = req.cookies; 
+    if(token){
+        jwt.verify(token, process.env.SECRET, {},(err, user)=>{
+            if(err)throw err; 
+            res.json(user);
+        })
+    }else{
+        res.json(null);
+    }
+}
 module.exports={
     test,
     registerUser, 
-    loginUser
+    loginUser, 
+    getProfile
 }

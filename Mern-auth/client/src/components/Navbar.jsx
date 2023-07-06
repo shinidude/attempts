@@ -8,15 +8,12 @@ import Nav from 'react-bootstrap/Nav';
 export default function Navbar () {
     return (
         <Nav>
-        <Nav.Item>
-            <Nav.Link> <Link to='/'>Home</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link><Link to='/login'>Login</Link></Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link><Link to='/register'>Register</Link></Nav.Link>
-        </Nav.Item>
+            <Nav.Item>
+                <Nav.Link><Link to='/'>Login</Link></Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link><Link to='/register'>Register</Link></Nav.Link>
+            </Nav.Item>
         </Nav>
     )
  }

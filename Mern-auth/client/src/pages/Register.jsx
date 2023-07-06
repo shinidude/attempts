@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from 'axios'; 
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function Register (){
     const navigate =  useNavigate(); 
@@ -25,7 +25,7 @@ export default function Register (){
             }else{
                 setData({}); 
                 toast.success('login successful. Welcome!');
-                navigate('/login');
+                navigate('/');
                 
             }
         } catch (error) {
@@ -34,27 +34,28 @@ export default function Register (){
     }
     return (
         <div>
-            <form onSubmit={handleSumbit}>
-                <Stack gap={2}>
-                    <div>
-                        <label> Name </label>
+            <Form onSubmit={handleSumbit}>
+               
+                    <Form.Group>
+                        <Form.Label> Name </Form.Label>
                         {/* //Taking all the data with the changes occurs in the name input based on the user's input */}
-                        <input type='text' placeholder="enter name ..." value={data.name} onChange={(e) =>{setData({...data, name: e.target.value})}}/>
-                    </div>
-                    <div>
-                        <label>Email</label>
+                        <Form.Control type='text' placeholder="enter name ..." value={data.name} onChange={(e) =>{setData({...data, name: e.target.value})}}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Email</Form.Label>
                         {/* //Taking all the data with the changes occurs in the email input  based on the user's input */}
-                        <input type='email' placeholder="enter email ..." value={data.email} onChange={(e) =>{setData({...data, email: e.target.value})}}/>
-                    </div>
-                    <div>
-                        <label>Password </label>
+                        <Form.Control type='email' placeholder="enter email ..." value={data.email} onChange={(e) =>{setData({...data, email: e.target.value})}}/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Password </Form.Label>
                         {/* //Taking all the data with the changes occurs in the password input based on the user's input */}
-                        <input type='password' placeholder="enter password ..." value={data.password} onChange={(e) =>{setData({...data, password: e.target.value})}}/>
-                    </div>
+                        <Form.Control type='password' placeholder="enter password ..." value={data.password} onChange={(e) =>{setData({...data, password: e.target.value})}}/>
+                    </Form.Group>
+                    <br></br>
                     <Button type="submit" variant="success">Submit </Button>
-                </Stack>
+              
          
-            </form>
+            </Form>
         </div>
     )
  }

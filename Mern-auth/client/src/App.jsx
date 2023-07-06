@@ -1,7 +1,6 @@
 
 import './App.css'; 
 import { Routes, Route } from 'react-router-dom'; 
-import Home from './pages/Home'; 
 import Register from './pages/Register';
 import Login from '../src/pages/Login';
 import Navbar from '../src/components/Navbar'
@@ -21,10 +20,9 @@ function App() {
         <Navbar/> 
         <Toaster position='bottom-right' toastOptions={{duration: 2000}}/>
         <Routes>
-            <Route path='/' element={<Home/>}/>
             <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/login' element={<Login/>}/>
+            <Route path='/' element={<Login/>}/>
         </Routes>
       </UserContextProvider>
   )

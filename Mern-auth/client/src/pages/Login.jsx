@@ -11,12 +11,13 @@ export default function Login () {
         email : '', 
         password : ''
     })
+
     const handleSumbit =async (e)=>{
         e.preventDefault(); 
         const { email, password} = data;
         try {
             const {data} = await axios.post('/login', {email, password}); 
-            console.log(data)
+            console.log(data.email)
             if(data.error){
                 toast.error(data.error); 
             }else{
@@ -35,13 +36,13 @@ export default function Login () {
                             <Form.Label>Email</Form.Label>
                             <Form.Control type='email' placeholder="enter email ..." value={data.email} onChange={(e) =>{setData({...data, email: e.target.value})}}/> 
                     </Form.Group>
-                <br />
                 <Form.Group>
      
                         <Form.Label>Password </Form.Label>
                         <Form.Control type='password' placeholder="enter password ..." value={data.password} onChange={(e) =>{setData({...data, password: e.target.value})}}/>
         
                 </Form.Group>
+                <br/>
                     <Button type="submit" variant="success">Login </Button>
             </Form>
         </div>

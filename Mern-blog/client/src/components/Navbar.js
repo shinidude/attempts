@@ -6,7 +6,9 @@ export const Navbar =()=>{
     return (<Fragment>
      <Nav  >
         <Nav.Item>
-            My Blog
+            <Nav.Link href="/posts">
+                My Blog
+            </Nav.Link>
         </Nav.Item>
         <Nav.Item>
             <Nav.Link href="/login">

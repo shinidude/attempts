@@ -2,18 +2,36 @@ import { Fragment, useState } from "react"
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import {toast } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 export const Register=()=>{
+
+    const navigate = useNavigate(); 
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');  
 
     const handleSubmit= async (event)=>{
         event.preventDefault();
-        await fetch('http://localhost:4000/register',{
-            method: 'POST', 
-            body: JSON.stringify({username, password}),
-            headers:{'Content-Type': 'application/json'}
-        }) 
+        try {
+            const response = await fetch('http://localhost:4000/register',{
+                method: 'POST', 
+                body: JSON.stringify({username, password}),
+                headers:{'Content-Type': 'application/json'}
+            })
+            console.log(response);
+            const notif =  await response.json(); 
+            console.log(notif.message);
+            if(response.status === 200) {
+                toast.success(notif.message);
+                navigate('/login');
+            }else{
+                toast.error(notif.message);
+            }
+     
+        } catch (error) {
+            console.log(error)
+        }
     }
     return (
         <div>

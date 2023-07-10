@@ -18,7 +18,7 @@ function App() {
   return (
     <UserContextProvider>
         <Navbar/> 
-        <Toaster position='bottom-right' toastOptions={{duration: 2000}}/>
+        <Toaster position="top-center" toastOptions={{duration: 2000}}/>
         <Routes>
             <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/register' element={<Register/>}/>

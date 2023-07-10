@@ -1,15 +1,17 @@
-import { Fragmen,useState } from "react"
+import { Fragmen,useContext,useState } from "react"
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Toast, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/userContext";
 
 
 export const Login=()=>{
     const navigate = useNavigate(); 
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');  
+    const {setUserInfo} = useContext(UserContext); 
 
     const handleSubmit= async (event)=>{
         event.preventDefault(); 
@@ -21,17 +23,15 @@ export const Login=()=>{
                 credentials: 'include'
             })  
             console.log(response);
-            //Get the reponse  message
-            const notif =  await response.json(); 
-            console.log(notif.message);
             //if the response is not okay
-            if(response.status === 200){
-                toast.success(notif.message);
-                navigate('/');
-                window.location.reload(false)
+            if(response.ok){
+                response.json().then(userInfo=>{
+                    setUserInfo(userInfo); 
+                    navigate('/');
+                });
             
             }else{
-                toast.error(notif.message); 
+                toast.error(await response.json()); 
             }
 
           

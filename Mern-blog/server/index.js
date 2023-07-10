@@ -59,7 +59,10 @@ app.post('/login', async(req, res)=>{
         if(isMatched){
             jwt.sign({username, id: blogUser._id},secret, {}, (err, token)=>{
                 if (err) throw err; 
-                res.cookie('token', token).json({message: `Welcome ${username}!`}); 
+                res.cookie('token', token).json({
+                    id: blogUser._id, 
+                    username : blogUser.username
+                }); 
             })
         }else{
             res.status(400).json({

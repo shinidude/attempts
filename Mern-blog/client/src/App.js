@@ -6,11 +6,12 @@ import { Login } from "./pages/login";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/home";
 import {Toaster} from 'react-hot-toast';
+import { UserContextProvider } from './context/userContext';
 
 
 function App() {
   return (
-    <div className="App">
+    <UserContextProvider>
         <Toaster position="top-center" toastOptions={{duration: 2000}}/>
       <Routes>
             <Route path='/' element={<Layout/>}>
@@ -18,9 +19,8 @@ function App() {
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
             </Route>
-     
         </Routes>
-    </div>
+    </UserContextProvider>
   );
 }
 

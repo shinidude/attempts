@@ -1,34 +1,35 @@
 
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/userContext';
 
 
 export const Navbar =()=>{
     const navigate = useNavigate();
-    const [username, setUsername] = useState(null);
-    useEffect(() => {
-        fetch('http://localhost:4000/profile', {
-          credentials: 'include',
-        }).then(response => {
-            console.log(response); console.log(response);
-          response.json().then(userInfo => {
-            setUsername(userInfo.username);
-          });
-        });
-      }, []);
+    const {setUserInfo,userInfo} = useContext(UserContext);
+  useEffect(() => {
+    fetch('http://localhost:4000/profile', {
+      credentials: 'include',
+    }).then(response => {
+      response.json().then(userInfo => {
+        setUserInfo(userInfo);
+      });
+    });
+  }, []);
 
-    function handleLogOut(){
-            fetch('http://localhost:4000/logout', {
-            credentials: 'include',
-            method: 'POST'
-        })
-    
-        setUsername(null);
-        navigate('/login');
-    }
-    let navElements;
-    if(!!username){
+  function logout() {
+    fetch('http://localhost:4000/logout', {
+      credentials: 'include',
+      method: 'POST',
+    });
+    setUserInfo(null);
+    navigate('/login')
+  }
+  let navElements;
+  const name = userInfo?.username;
+    console.log(name);
+    if(!!name){
         navElements =
         <>
             <Nav.Item> 
@@ -37,7 +38,7 @@ export const Navbar =()=>{
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <a onClick={handleLogOut}> Logout</a>
+                <a onClick={logout}> Logout</a>
             
              </Nav.Item>
         </>
@@ -58,7 +59,6 @@ export const Navbar =()=>{
 </>
     }
     return (<Fragment>
-        
      <Nav>
         <Nav.Item>
             <Nav.Link href="/">

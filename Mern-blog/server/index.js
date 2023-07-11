@@ -43,36 +43,26 @@ app.post('/login', async(req, res)=>{
         //check if the user exist 
         const blogUser =  await UserModel.findOne({username}); 
         //if does not  exist 
-        if(!blogUser){
-            res.status(400).json({
-                message : "User does not exist" 
-            })
+        if(!blogUser || password.length < 6){
+            throw error
         }
 
-        if(password.length < 6) {
-            res.status(400).json({
-                message : "Enter passoword properly please" 
-            })
-        }
        // if it does exist, continnue to check the paassword
         const isMatched =await bcrypt.compare(password, blogUser.password);
         if(isMatched){
-            jwt.sign({username, id: blogUser._id},secret, {}, (err, token)=>{
-                if (err) throw err; 
+            jwt.sign({username, id: blogUser._id},secret, {}, (error, token)=>{
+                if (error) throw error; 
                 res.cookie('token', token).json({
                     id: blogUser._id, 
                     username : blogUser.username
                 }); 
             })
         }else{
-            res.status(400).json({
-                message : "Password and username does not match. Please check details" 
-        })
-        
+           throw error
         }
       
     } catch (error) {
-        console.log(error)
+       res.status(400).send(error)
     }
         
 })
@@ -80,14 +70,14 @@ app.post('/login', async(req, res)=>{
 app.get('/profile', (req, res) =>{
     try {
         const {token} = req.cookies; 
-        jwt.verify(token,secret, {}, (err, info) => {
-            if(err) throw err; 
+        jwt.verify(token,secret, {}, (error, info) => {
+            if(error){throw error}
             res.json(info); 
         });
     } catch (error) {
-    
-    }
-})
+        res.status(400).send(error)
+    }    
+});
 
 app.post('/logout', (req,res)=>{
     try {

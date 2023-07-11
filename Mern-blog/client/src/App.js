@@ -7,6 +7,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./pages/home";
 import {Toaster} from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
+import { Createform } from './pages/createPost';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/create' element={<Createform/>}/>
             </Route>
         </Routes>
     </UserContextProvider>

@@ -12,6 +12,7 @@ export const Navbar =()=>{
     fetch('http://localhost:4000/profile', {
       credentials: 'include',
     }).then(response => {
+      console.log(response)
       response.json().then(userInfo => {
         setUserInfo(userInfo);
       });
@@ -26,7 +27,8 @@ export const Navbar =()=>{
     setUserInfo(null);
     navigate('/login')
   }
-  let navElements;
+
+  let navElements = {};
   const name = userInfo?.username;
     console.log(name);
     if(!!name){

@@ -31,12 +31,11 @@ export const Login=()=>{
                 });
             
             }else{
-                toast.error(await response.json()); 
+                toast.error("Wrong credentials, please try again")
             }
-
-          
+    
         } catch (error) {
-            
+            console.log(error)
         }
     }
     return (

@@ -7,6 +7,9 @@ const bcrypt = require('bcrypt');
 const UserModel = require('./models/User');
 const jwt = require("jsonwebtoken"); 
 const cookieParser = require("cookie-parser"); 
+const multer =  require('multer'); 
+const uploadMiddleware =  multer({ dest: 'uploads/'})
+const fs = require('fs') //find system
 
 const app =  express(); 
 app.use(express.json());
@@ -85,6 +88,17 @@ app.post('/logout', (req,res)=>{
     } catch (error) {
         console.log(error);
     }
+})
+
+app.post('/post', uploadMiddleware.single('file'), (req, res) =>{
+
+      const {originalname,path} = req.file;
+      const parts = originalname.split('.');
+      const ext = parts[parts.length - 1];
+      newPath = path+'.'+ext;
+      fs.renameSync(path, newPath);
+
+    res.json({ext})
 })
 
 app.listen(4000, ()=> console.log("server started"));

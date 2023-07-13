@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-hot-toast';
 import Editor from '../components/Editor';
 
 
@@ -12,21 +13,27 @@ export const Createform =()=>{
 
 
     const handleNewPost = async (event)=>{
+        event.preventDefault();
         const data = new FormData()
         data.set('title', title); 
         data.set('summary', summary); 
         data.set('content', content); 
         data.set('file', files[0]); 
-        event.preventDefault();
-  
         const response = await fetch('http://localhost:4000/post', {
             method : 'POST', 
             body: data, 
             credentials: 'include', 
         }); 
 
-        console.log(await response.json()); 
-
+         console.log(await response.json());
+         console.log(response);
+        if(response.ok){
+            toast.success("New Post Created")
+            setTitle(''); 
+            setContent(''); 
+            setSummary('');
+        }
+        
 
     } 
      console.log(files);

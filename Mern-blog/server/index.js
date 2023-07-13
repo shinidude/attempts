@@ -19,6 +19,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 mongoose.connect(process.env.DB)
 .then(()=> console.log("Database is connected"))
 .catch((err)=>console.log('Database is not connected', err) )
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 const secret = "yygiguihuhuihiuhuihhhhuuh";
 
@@ -98,18 +99,25 @@ app.post('/post', uploadMiddleware.single('file'), async(req, res) =>{
       newPath = path+'.'+ext;
       fs.renameSync(path, newPath);
 
+    const {token} = req.cookies; 
+     
     const {title, summary, content}  = req.body
+    jwt.verify(token,secret, {}, async (error, info) => {
+        if (err) throw err
+        const newPost = await Post.create({
+            title, 
+            summary, 
+            content, 
+            cover: newPath, 
+            author: info.id
     
-    const newPost = await Post.create({
-        title, 
-        summary, 
-        content, 
-        cover: newPath
+        });
+        res.json({newPost})
+    });
+})
 
-    })
-    res.json({newPost});
-
-
+app.get('/post', async (req, res) =>{
+    res.json(await Post.find());
 })
 
 app.listen(4000, ()=> console.log("server started"));

@@ -12,6 +12,7 @@ const uploadMiddleware =  multer({ dest: 'uploads/'})
 const fs = require('fs') //find system
 const Post = require('./models/Post'); 
 
+
 const app =  express(); 
 app.use(express.json());
 app.use(cookieParser()); // the middleware (npm install cookie-parser)
@@ -110,7 +111,7 @@ app.post('/post', uploadMiddleware.single('file'), async(req, res) =>{
             summary, 
             content, 
             cover: newPath, 
-            author: info.id
+            author:info.id
     
         });
         res.json({newPost})
@@ -120,8 +121,50 @@ app.post('/post', uploadMiddleware.single('file'), async(req, res) =>{
     }
 })
 
-app.get('/post', async (req, res) =>{
-    res.json(await Post.find());
-})
 
+app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+    let newPath = null;
+    if(req.file){
+        const {originalname,path} = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
+    }
+ 
+    const {token} = req.cookies; 
+    jwt.verify(token,secret, {}, async (error, info) => {
+        if (error) throw error
+        const {id, title, summary, content} = req.body;
+        console.log(req.body)
+        const postInfo = await Post.findById(id)
+        const isAuthor = JSON.stringify(postInfo.author) === JSON.stringify(info.id); 
+        if(!isAuthor){
+            throw error
+        }
+        await Post.updateOne({_id : id},
+        {
+            title,
+            summary,  
+            content : content, 
+            cover: newPath? newPath : postInfo.cover}
+        )
+        console.log(postInfo)
+        res.json(postInfo)
+    })
+});
+
+app.get('/post', async (req,res) => {
+    res.json(
+      await Post.find()
+        .populate('author', 'username')
+        .sort({createdAt: -1})
+        .limit(20)
+    );
+  });
+app.get('/post/:id', async (req, res)=>{
+    const {id} =  req.params; 
+    res.json(await Post.findById(id).populate('author', 'username'));
+})
 app.listen(4000, ()=> console.log("server started"));
+

@@ -15,6 +15,7 @@ export const Navbar =()=>{
       console.log(response)
       response.json().then(userInfo => {
         setUserInfo(userInfo);
+        console.log(userInfo)
       });
     });
   }, []);
@@ -30,13 +31,18 @@ export const Navbar =()=>{
 
   let navElements = {};
   const name = userInfo?.username;
-    console.log(name);
+    console.log("This is the :" + userInfo?.id);
     if(!!name){
         navElements =
         <>
             <Nav.Item> 
                 <Nav.Link href="/create">
                     Create new post
+                </Nav.Link>
+            </Nav.Item>
+            <Nav.Item> 
+                <Nav.Link href={`/own/${userInfo?.id}`}>
+                    My posts
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
@@ -64,7 +70,7 @@ export const Navbar =()=>{
      <Nav>
         <Nav.Item>
             <Nav.Link href="/">
-                MyBlog
+                Blogs
             </Nav.Link>
         </Nav.Item>
         {navElements}

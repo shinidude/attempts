@@ -8,7 +8,9 @@ import { Home } from "./pages/home";
 import {Toaster} from 'react-hot-toast';
 import { UserContextProvider } from './context/userContext';
 import { Createform } from './pages/createPost';
-
+import { PostPage } from './pages/PostPage';
+import EditPost, { editPage } from './pages/EditPost';
+import { MyBlogs } from './pages/Myblogs';
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/create' element={<Createform/>}/>
+                <Route path='/post/:id' element={<PostPage/>}/>
+                <Route path="/own/:id" element={<MyBlogs/>} />
+                <Route path="/edit/:id" element={<EditPost />} />
             </Route>
         </Routes>
     </UserContextProvider>

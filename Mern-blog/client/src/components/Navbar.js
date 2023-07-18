@@ -15,7 +15,6 @@ export const Navbar =()=>{
       console.log(response)
       response.json().then(userInfo => {
         setUserInfo(userInfo);
-        console.log(userInfo)
       });
     });
   }, []);
@@ -31,7 +30,6 @@ export const Navbar =()=>{
 
   let navElements = {};
   const name = userInfo?.username;
-    console.log("This is the :" + userInfo?.id);
     if(!!name){
         navElements =
         <>

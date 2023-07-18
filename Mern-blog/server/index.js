@@ -73,6 +73,14 @@ app.post('/login', async(req, res)=>{
         
 })
 
+app.get('/own/:id', async(req, res)=>{
+
+    const {id } = req.params;
+   console.log(id); 
+
+   res.json(await Post.find({ author : id }));
+}
+)
 app.get('/profile', (req, res) =>{
     try {
         const {token} = req.cookies; 

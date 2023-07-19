@@ -39,13 +39,13 @@ export const Login=()=>{
         }
     }
     return (
-        <div>
+        <div  className="auth-class">
+              <h3>Login</h3>
+              <hr/>
             <Form onSubmit={handleSubmit}>
-                <Form.Group as={Row}>
-                        <Col sm="1">
-                            <Form.Label>Username :</Form.Label>
-                        </Col>
-                        <Col sm="3">
+                <Form.Group as={Row}  className="mb-3" >
+                        <Form.Label column sm={2}>Username</Form.Label>
+                        <Col sm={9}>
                             <Form.Control type="text" 
                                 plaintext placeholder="enter username"
                                 value={username}
@@ -53,19 +53,16 @@ export const Login=()=>{
                             />
                         </Col>
                 </Form.Group>
-                <Form.Group as={Row}>
-                    <Col sm="1">
-                        <Form.Label sm="2">Password :</Form.Label>
-                    </Col>
-                    <Col sm="3">
+                <Form.Group as={Row}  className="mb-3" >
+                    <Form.Label column sm={2}>Password</Form.Label>
+                    <Col sm={9}>
                         <Form.Control type="password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
-                <br/>
-            <Form.Group>
+            <Form.Group as={Row}  className="mb-3" >
                 <Form.Control type="submit" value={"Login"}/>
             </Form.Group>
         </Form>

@@ -3,9 +3,11 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 
 
-export const Navbar =()=>{
+export const NavBar =()=>{
     const navigate = useNavigate();
     const {setUserInfo,userInfo} = useContext(UserContext);
   useEffect(() => {
@@ -65,13 +67,11 @@ export const Navbar =()=>{
 </>
     }
     return (<Fragment>
-     <Nav>
-        <Nav.Item>
-            <Nav.Link href="/">
-                Blogs
-            </Nav.Link>
-        </Nav.Item>
-        {navElements}
-     </Nav>
+    <Navbar >
+      <Navbar.Brand href="/"> Blogs</Navbar.Brand>
+      <Nav className="me-auto">
+          {navElements}
+      </Nav>
+     </Navbar>
     </Fragment>)
 }

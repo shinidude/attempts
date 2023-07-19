@@ -139,7 +139,9 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
         newPath = path+'.'+ext;
         fs.renameSync(path, newPath);
     }
- 
+    if(!req.file){
+        console.log("no file");
+    }
     const {token} = req.cookies; 
     jwt.verify(token,secret, {}, async (error, info) => {
         if (error) throw error
@@ -157,7 +159,6 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
             content : content, 
             cover: newPath? newPath : postInfo.cover}
         )
-        console.log(postInfo)
         res.json(postInfo)
     })
 });
@@ -170,6 +171,16 @@ app.get('/post', async (req,res) => {
         .limit(20)
     );
   });
+
+app.delete('/post/:id', async(req,res)=>{
+    const {id} = req.params;
+    const result = await Post.deleteOne({_id:id});
+    if(result.deletedCount === 1){
+        res.json({message : " the deletion is successful"})
+        
+    }
+})
+
 app.get('/post/:id', async (req, res)=>{
     const {id} =  req.params; 
     res.json(await Post.findById(id).populate('author', 'username'));

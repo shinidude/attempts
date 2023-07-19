@@ -11,6 +11,7 @@ import { Createform } from './pages/createPost';
 import { PostPage } from './pages/PostPage';
 import EditPost, { editPage } from './pages/EditPost';
 import { MyBlogs } from './pages/Myblogs';
+import './styles/App.scss'
 
 function App() {
   return (

@@ -1,1 +1,37 @@
-/*# sourceMappingURL=App.css.map */
+body {
+  background-color: #fffffe;
+}
+
+.navbar {
+  height: 4rem;
+  background-color: #00214d;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+}
+.navbar .navbar-brand {
+  margin-left: 5%;
+  color: #d9376e;
+  height: 2rem;
+  font-weight: bolder;
+}
+.navbar .nav-link {
+  color: #fffffe;
+}
+
+.auth-class {
+  text-align: center;
+  width: 80%;
+  margin: 2rem auto auto auto;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
+}
+.auth-class form {
+  margin-top: 2rem;
+}
+.auth-class h3 {
+  font-weight: bold;
+}
+
+.home-body {
+  align-items: center;
+}/*# sourceMappingURL=App.css.map */

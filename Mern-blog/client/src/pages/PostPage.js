@@ -25,9 +25,6 @@ export const PostPage =()=>{
         return "";
     } 
     return <>
-        <Link to={`/edit/${postInfo._id}`}>
-            Edit
-        </Link>
         <Image src={`http://localhost:4000/${postInfo.cover}`} fluid/>
         <h1>{postInfo.title}</h1>
         <div dangerouslySetInnerHTML={{__html:postInfo.content}}/>

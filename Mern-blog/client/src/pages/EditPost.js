@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
-import {Navigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Editor from '../components/Editor';
+import { toast } from "react-hot-toast";
 
 export default function EditPost() {
+  const nav = useNavigate("");
   const {id} = useParams();
   const [title,setTitle] = useState('');
   const [summary,setSummary] = useState('');
@@ -38,13 +40,11 @@ export default function EditPost() {
       body: data,
       credentials: 'include',
     });
-    // if (response.ok) {
-    //   setRedirect(true);
-    // }
-  }
-
-  if (redirect) {
-    return <Navigate to={'/post/'+id} />
+    console.log(response);
+    if(response.ok){
+      toast.success("Edit was successful")
+      nav(`/post/${id}`)
+    }
   }
 
   return (<>

@@ -16,14 +16,14 @@ export const MyBlogs =()=>{
                 console.log(myblogs);
             });
         } )
-    }, [])
+    }, [myblogs])
 
     if(!myblogs){
         return "";
     } 
     return (<div>
         {myblogs.length > 0 && myblogs.map(post => (
-          <Post {...post} />
+          <Post {...post} myPost={true} />
         ))}
     </div>)
 }

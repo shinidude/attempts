@@ -1,0 +1,41 @@
+@use './variables' as vb;
+
+body{
+    background-color: #fffffe;
+}
+
+.navbar{
+    height: 4rem;
+    background-color:vb.$navbarBG;
+    box-shadow: vb.$box-shadow;
+    .navbar-brand{
+        margin-left: 5%;
+        color: vb.$brandColor;
+        height: 2rem;
+        font-weight: bolder;
+    }
+
+    .nav-link{
+        color: vb.$navbarColor;
+    }
+
+}
+
+.auth-class{
+    text-align: center;
+    width: 80%;
+    margin: 2rem auto auto auto;
+    border-radius: vb.$border-radius;
+    padding: 1.5rem;
+    box-shadow: vb.$box-shadow;
+    form{
+        margin-top: 2rem;
+    }
+    h3{
+        font-weight: bold;
+    }
+}
+
+.home-body{
+    align-items: center;
+}

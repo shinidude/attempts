@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { Post } from "../components/Post";
+import Row from 'react-bootstrap/Row';
 
 export const Home =()=>{
     const [posts,setPosts] = useState([]);
@@ -13,10 +14,12 @@ export const Home =()=>{
       });
     }, []);
     return (
-      <>
-        {posts.length > 0 && posts.map(post => (
-          <Post {...post} />
-        ))}
-      </>
+      <div className="home-body">
+          <Row xs={1} md={2} className="g-4">
+            {posts.length > 0 && posts.map(post => (
+              <Post {...post} />
+            ))}
+          </Row>
+      </div>
     );
 }

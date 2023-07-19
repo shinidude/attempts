@@ -1,11 +1,11 @@
 import { Fragment } from "react"
 import { Outlet } from "react-router-dom"
-import { Navbar } from "./Navbar"
+import { NavBar } from "./Navbar"
 
 export const Layout =()=>{
     return(
         <Fragment>
-            <Navbar/>
+            <NavBar/>
             <Outlet/>
         </Fragment>
     )

@@ -4,8 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
-
+import {TbWritingSign} from 'react-icons/tb';
+import {IoIosCreate} from 'react-icons/io'
 
 export const NavBar =()=>{
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ export const NavBar =()=>{
         <>
             <Nav.Item> 
                 <Nav.Link href="/create">
-                    Create new post
+                    Create new post <IoIosCreate/>
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item> 
@@ -46,7 +46,7 @@ export const NavBar =()=>{
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <a onClick={logout}> Logout</a>
+                <Nav.Link onClick={logout}> Logout</Nav.Link>
             
              </Nav.Item>
         </>
@@ -68,7 +68,7 @@ export const NavBar =()=>{
     }
     return (<Fragment>
     <Navbar >
-      <Navbar.Brand href="/"> Blogs</Navbar.Brand>
+      <Navbar.Brand href="/"> <TbWritingSign/>Blogs</Navbar.Brand>
       <Nav className="me-auto">
           {navElements}
       </Nav>

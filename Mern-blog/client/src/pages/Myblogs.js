@@ -21,7 +21,7 @@ export const MyBlogs =()=>{
     if(!myblogs){
         return "";
     } 
-    return (<div>
+    return (<div className="home-body">
         {myblogs.length > 0 && myblogs.map(post => (
           <Post {...post} myPost={true} />
         ))}

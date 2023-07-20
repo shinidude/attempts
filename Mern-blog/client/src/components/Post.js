@@ -1,11 +1,11 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-
+import {AiFillEdit,AiFillDelete} from 'react-icons/ai';
+import Moment from 'moment';
 
 export const  Post=({_id,title,summary,cover,content,createdAt,author, myPost})=>{
     const navigate = useNavigate();
@@ -26,32 +26,41 @@ export const  Post=({_id,title,summary,cover,content,createdAt,author, myPost})=
         toast.success(info.message); 
     }
 
+    const handleView =()=>{
+        navigate(`/post/${_id}`);
+    }
+
     ownerFunctions = 
-            <div className='owner-func'>
-                <Button onClick={handleEdit}>Edit</Button>
-                <Button onClick={handleDelete}>Delete</Button>
-            </div>
+            <Card.Body className='owner-func'>
+                <Button className='float-right' onClick={handleEdit}><AiFillEdit/></Button>
+                <Button  className='float-right' onClick={handleDelete}><AiFillDelete/></Button>
+            </Card.Body>;
         
   
     return (
-        <div key ={_id} className="blog-post">
-            {myPost===true && ownerFunctions}
-            <Link to={`/post/${_id}`}>
-                <Card className="mb-3" style={{ maxWidth: '540px' }}>
-                    <Row className="g-0">
-                        <Col md={4}>
-                            <Card.Img  classname="card-img-sm-left" src={'http://localhost:4000/'+cover} />
-                        </Col>
-                        <Col md={8}>
-                            <Card.Body>
-                                <Card.Title>{title}</Card.Title>
-                                <Card.Text>{author.username}</Card.Text>
-                                <Card.Text>{summary}</Card.Text>
-                            </Card.Body>
-                        </Col>
-                    </Row>
-                </Card> 
-            </Link>
+        <div key ={_id} className='blog-post'>
+                <Card className='mb-3' style={{ maxWidth: '550px', minHeight:'200px' }}>
+                    <Button variant='outline-ligth' onClick={handleView}>
+                    <Card.Header>
+                        <Row>
+                            <Col id='date'><p>{Moment(createdAt).format("ll")}</p></Col> 
+                            <Col id='author-col'><p>{author.username}</p></Col>
+                        </Row>
+                    </Card.Header>
+                        <Row className='g-0' >
+                            <Col className='image' md={4}>
+                                <Card.Img  className="card-img-sm-left" src={'http://localhost:4000/'+cover} />
+                            </Col>
+                            <Col id='post-body' md={8}>
+                                <Card.Body>
+                                    <Card.Title>{title}</Card.Title>
+                                    <Card.Text>{summary}</Card.Text>
+                                </Card.Body>
+                            </Col>
+                        </Row>
+                    </Button> 
+                    {myPost===true && ownerFunctions}
+                </Card>
         </div>
     )
 }

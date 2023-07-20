@@ -15,7 +15,7 @@ export const Home =()=>{
     }, []);
     return (
       <div className="home-body">
-          <Row xs={1} md={2} className="g-4">
+          <Row md={2} className="g-1">
             {posts.length > 0 && posts.map(post => (
               <Post {...post} />
             ))}

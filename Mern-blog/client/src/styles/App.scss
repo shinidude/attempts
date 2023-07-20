@@ -37,5 +37,66 @@ body{
 }
 
 .home-body{
-    align-items: center;
+    width: 80%;
+    margin: 2rem auto auto auto;
+
+    .mb-3{
+        box-shadow: vb.$box-shadow;
+        margin: auto;
+        .card-header {
+            color: vb.$navbarColor;
+            background-color: vb.$grey;
+            padding: 0 !important;
+            margin-bottom: 1rem;
+            width: 100%;
+            p{
+                margin-top: 1rem;
+                font-weight: lighter;
+                font-size: small;
+                font-family:'Courier New', Courier, monospace;
+            }
+            #date{
+                text-align: left;
+                margin-left: 15px;
+            }
+            #author-col{
+                text-align: right;
+                margin-right: 15px;
+            }
+        }
+
+        .btn btn-outline-ligth {
+            text-align: left !important;
+            padding: 0 !important;
+            margin: 0;
+            outline: none;
+            border: none;
+        }
+        #post-body{
+            text-align: left;
+            .card-body{
+                padding: 0;
+                margin-left: 10px;
+
+                .card-text{
+                    letter-spacing: 0.2rem;
+                    font-weight: lighter;
+                    color: vb.$grey;
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+                }
+            }
+        }
+    }
+
+    .owner-func{
+        margin: auto;
+        margin: 0;
+        width: 100%;
+        button{
+            margin: 2px;
+            background-color: vb.$navbarBG;
+            border: none;
+        }
+    }
+
 }

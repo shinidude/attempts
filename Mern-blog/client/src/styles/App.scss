@@ -92,10 +92,13 @@ body{
         margin: auto;
         margin: 0;
         width: 100%;
+        // position: absolute;
         button{
+            // right: 0;
             margin: 2px;
             background-color: vb.$navbarBG;
             border: none;
+            float: right;
         }
     }
 

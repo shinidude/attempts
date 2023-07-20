@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Post } from "../components/Post"
+import Row from 'react-bootstrap/Row';
 
 
 
@@ -22,8 +23,10 @@ export const MyBlogs =()=>{
         return "";
     } 
     return (<div className="home-body">
-        {myblogs.length > 0 && myblogs.map(post => (
-          <Post {...post} myPost={true} />
-        ))}
+          <Row md={2} className="g-1">
+            {myblogs.length > 0 && myblogs.map(post => (
+            <Post {...post} myPost={true} />
+            ))}
+        </Row>
     </div>)
 }

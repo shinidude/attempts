@@ -5,6 +5,7 @@ body{
 }
 
 .navbar{
+    justify-content: space-between;
     height: 4rem;
     background-color:vb.$navbarBG;
     box-shadow: vb.$box-shadow;
@@ -14,8 +15,14 @@ body{
         height: 2rem;
         font-weight: bolder;
     }
-
+    .me-auto{
+        margin: 0 !important;
+        float: right !important;
+        margin-right: 5%;
+        
+    }
     .nav-link{
+        float: right;
         color: vb.$navbarColor;
     }
 
@@ -92,9 +99,7 @@ body{
         margin: auto;
         margin: 0;
         width: 100%;
-        // position: absolute;
         button{
-            // right: 0;
             margin: 2px;
             background-color: vb.$navbarBG;
             border: none;

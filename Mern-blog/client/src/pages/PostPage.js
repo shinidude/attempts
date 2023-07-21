@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 
 export const PostPage =()=>{
     const {id }= useParams(); 
@@ -24,9 +24,15 @@ export const PostPage =()=>{
     if(!postInfo){
         return "";
     } 
-    return <>
-        <Image src={`http://localhost:4000/${postInfo.cover}`} fluid/>
-        <h1>{postInfo.title}</h1>
-        <div dangerouslySetInnerHTML={{__html:postInfo.content}}/>
-    </>;
+    return (<div className='single-post'> 
+            <div className="post-info">
+               <div> <h1>{postInfo.title}</h1> <p>{postInfo.author.username} </p></div>
+                <p> {moment(postInfo.createdAt).format("ll")}</p>
+            </div>
+                <hr/>
+                <Image src={`http://localhost:4000/${postInfo.cover}`} fluid/>
+                <br/>
+                <div dangerouslySetInnerHTML={{__html:postInfo.content}}/>
+            </div>
+        );
 }

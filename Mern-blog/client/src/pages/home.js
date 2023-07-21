@@ -9,7 +9,6 @@ export const Home =()=>{
       fetch('http://localhost:4000/post').then(response => {
         response.json().then(posts => {
           setPosts(posts);
-          console.log(posts);
         });
       });
     }, []);

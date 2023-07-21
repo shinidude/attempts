@@ -2,11 +2,14 @@
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import Editor from '../components/Editor';
 
 
 
+
 export const Createform =()=>{
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [summary, setSummary] = useState('');
     const [files, setFile] = useState('');
@@ -27,7 +30,8 @@ export const Createform =()=>{
         }); 
 
          console.log(await response.json());
-         console.log(response);
+        console.log("hell0")
+        console.log(await response.json());
         if(response.ok){
             toast.success("New Post Created")
             setTitle(''); 

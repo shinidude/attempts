@@ -1,7 +1,7 @@
 @use './variables' as vb;
 
 body{
-    background-color: #fffffe;
+    background-color: #ef4565;
 }
 
 .navbar{
@@ -12,20 +12,35 @@ body{
     .navbar-brand{
         margin-left: 5%;
         color: vb.$brandColor;
-        height: 2rem;
+        height: 4rem;
         font-weight: bolder;
     }
     .me-auto{
-        margin: 0 !important;
+        margin: 0 5% 0 0 !important;
         float: right !important;
-        margin-right: 5%;
-        
-    }
-    .nav-link{
-        float: right;
-        color: vb.$navbarColor;
-    }
+        border-radius: 10px;
 
+        .nav-item{
+            margin-left: 5px;
+            .nav-link{
+                padding: auto 15px auto 15px;
+                border-radius: 5px;
+                float: right;
+                margin: auto;
+                background-color:vb.$brandColor;
+                color:vb.$navbarColor;
+                font-weight: bold;
+                height: 2.5rem;
+            }
+        }
+
+
+        .nav-link:hover{
+            color: vb.$navbarBG;
+            background-color:vb.$navbarColor;
+         
+        }
+    }
 }
 
 .auth-class{
@@ -34,6 +49,7 @@ body{
     margin: 2rem auto auto auto;
     border-radius: vb.$border-radius;
     padding: 1.5rem;
+    background-color: vb.$navbarColor;
     box-shadow: vb.$box-shadow;
     form{
         margin-top: 2rem;
@@ -51,8 +67,8 @@ body{
         box-shadow: vb.$box-shadow;
         margin: auto;
         .card-header {
-            color: vb.$navbarColor;
-            background-color: vb.$grey;
+            color: vb.$navbarBG;
+            background-color: vb.$small-buttons;
             padding: 0 !important;
             margin-bottom: 1rem;
             width: 100%;
@@ -106,5 +122,40 @@ body{
             float: right;
         }
     }
+}
 
+.single-post{
+    background-color: vb.$navbarColor;
+    padding: 5%;
+    margin: 2% auto 2% auto;
+    border-radius: vb.$border-radius;
+    box-shadow: vb.$box-shadow;
+    width: 80%;
+    hr{
+        margin-top: 0;
+    }
+    .post-info{
+        display: flex;
+        justify-content: space-between;
+    }
+    h1{
+        font-family:Verdana, Geneva, Tahoma, sans-serif Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: medium;
+        letter-spacing: 0.6rem;
+    }
+    p{
+        letter-spacing: 0.1rem;
+        font-weight: lighter;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+    h3{
+        font-family:  Calibri, 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.2rem;
+    }
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

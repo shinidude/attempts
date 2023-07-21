@@ -76,8 +76,6 @@ app.post('/login', async(req, res)=>{
 app.get('/own/:id', async(req, res)=>{
 
     const {id } = req.params;
-   console.log(id); 
-
    res.json(await Post.find({ author : id }));
 }
 )
@@ -104,26 +102,25 @@ app.post('/logout', (req,res)=>{
 app.post('/post', uploadMiddleware.single('file'), async(req, res) =>{
     try {
         const {originalname,path} = req.file;
-      const parts = originalname.split('.');
-      const ext = parts[parts.length - 1];
-      newPath = path+'.'+ext;
-      fs.renameSync(path, newPath);
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
 
-    const {token} = req.cookies; 
+        const {token} = req.cookies; 
      
-    const {title, summary, content}  = req.body
-    jwt.verify(token,secret, {}, async (error, info) => {
-        if (error) throw error
-        const newPost = await Post.create({
-            title, 
-            summary, 
-            content, 
-            cover: newPath, 
-            author:info.id
-    
-        });
-        res.json({newPost})
-    });   
+        const {title, summary, content}  = req.body
+        jwt.verify(token,secret, {}, async (error, info) => {
+            if (error) throw error
+            const newPost = await Post.create({
+                title, 
+                summary, 
+                content, 
+                cover: newPath, 
+                author:info.id
+            });
+            res.json({newPost})
+        });   
     } catch (error) {
         
     }
@@ -177,7 +174,6 @@ app.delete('/post/:id', async(req,res)=>{
     const result = await Post.deleteOne({_id:id});
     if(result.deletedCount === 1){
         res.json({message : " the deletion is successful"})
-        
     }
 })
 

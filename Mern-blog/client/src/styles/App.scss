@@ -33,8 +33,6 @@ body{
                 height: 2.5rem;
             }
         }
-
-
         .nav-link:hover{
             color: vb.$navbarBG;
             background-color:vb.$navbarColor;
@@ -67,8 +65,8 @@ body{
         box-shadow: vb.$box-shadow;
         margin: auto;
         .card-header {
-            color: vb.$navbarBG;
-            background-color: vb.$small-buttons;
+            color: vb.$navbarColor;
+            background-color: vb.$navbarBG;
             padding: 0 !important;
             margin-bottom: 1rem;
             width: 100%;
@@ -120,6 +118,11 @@ body{
             background-color: vb.$navbarBG;
             border: none;
             float: right;
+        }
+
+        button:hover{
+            background-color: vb.$small-buttons;
+            color: vb.$navbarBG;
         }
     }
 }

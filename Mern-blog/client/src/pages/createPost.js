@@ -5,9 +5,6 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Editor from '../components/Editor';
 
-
-
-
 export const Createform =()=>{
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
@@ -18,30 +15,31 @@ export const Createform =()=>{
 
     const handleNewPost = async (event)=>{
         event.preventDefault();
-        const data = new FormData()
-        data.set('title', title); 
-        data.set('summary', summary); 
-        data.set('content', content); 
-        data.set('file', files[0]); 
-        const response = await fetch('http://localhost:4000/post', {
-            method : 'POST', 
-            body: data, 
-            credentials: 'include', 
-        }); 
+        try {
+            const data = new FormData()
+            data.set('title', title); 
+            data.set('summary', summary); 
+            data.set('content', content); 
+            data.set('file', files[0]); 
+            const response = await fetch('http://localhost:4000/post', {
+                method : 'POST', 
+                body: data, 
+                credentials: 'include', 
+            }); 
 
-         console.log(await response.json());
-        console.log("hell0")
-        console.log(await response.json());
-        if(response.ok){
-            toast.success("New Post Created")
-            setTitle(''); 
-            setContent(''); 
-            setSummary('');
+            if(response.ok){
+                const info = await response.json(); 
+                toast.success("New Post Created")
+                setTitle(''); 
+                setContent(''); 
+                setSummary('');
+                navigate(`/post/${info.newPost._id}`);
+            }   
+        } catch (error) {
+            
         }
-        
-
     } 
-     console.log(files);
+  
     return (<>
         <Form onSubmit={handleNewPost} >
             <Form.Group>

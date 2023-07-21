@@ -7,7 +7,7 @@ import moment from "moment";
 
 export const PostPage =()=>{
     const {id }= useParams(); 
-    const navigate = useNavigate();
+
     const [postInfo,setPostInfo] = useState(null)
     useEffect(()=>{
         console.log(id)  
@@ -27,7 +27,7 @@ export const PostPage =()=>{
     return (<div className='single-post'> 
             <div className="post-info">
                <div> <h1>{postInfo.title}</h1> <p>{postInfo.author.username} </p></div>
-                <p> {moment(postInfo.createdAt).format("ll")}</p>
+                <p></p> {moment(postInfo.createdAt).format("ll")}
             </div>
                 <hr/>
                 <Image src={`http://localhost:4000/${postInfo.cover}`} fluid/>
